@@ -6,8 +6,6 @@ type ErrorProps = {
 };
 
 export default function ErrorPage({ error, reset }: ErrorProps) {
-  // console.log("Error Message: ", error.message);
-
   return (
     <div className="flex flex-col mt-4 justify-center items-center">
       <>

@@ -1,7 +1,7 @@
+export const dynamicParams = true;
+
 import { TodoProp } from "@/propTypes.d";
 import NotFound from "./not-found";
-
-export const dynamicParams = true;
 
 //- @pageProp
 type PageProp = {
@@ -9,8 +9,7 @@ type PageProp = {
 };
 
 const getTodo = async (id: string) => {
-  try {
-    /*
+  /*
     -@enforce server-side rendering
     i.e fetch(url, { cache: "no-cache" }); 
  
@@ -21,33 +20,31 @@ const getTodo = async (id: string) => {
     i.e fetch(url, { next: {revalidate: 60} }); 
   */
 
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/todos/" + id,
-      { next: { revalidate: 60 } }
-    );
+  const response = await fetch(
+    "https://jsonplaceholder.typicode.com/todos/" + id,
+    { next: { revalidate: 60 } }
+  );
 
-    const resp = await response.json();
+  const resp = await response.json();
 
-    return resp;
-  } catch (err) {
-    console.log(err);
-  }
+  return resp;
 };
 
-export default async function TodoPage({ params: { id } }: PageProp) {
+async function TodoPage({ params: { id } }: PageProp) {
   const todo: TodoProp = await getTodo(id);
 
   if (!todo.id) return <NotFound />;
 
   return (
-    <div className={`container flex justify-center`}>
-      <div className="h-auto w-8/12 bg-orange-400 rounded flex flex-col justify-center shadow-md">
-        <h4 className="text-3xl p-4 text-center text-gray-600">{todo.title}</h4>
-        <div style={{ borderBottom: "2px dotted #666", marginTop: "2rem" }} />
-        <div className="flex justify-between items-center pb-4 px-5 mt-6">
-          <p className="text-gray-700 text-lg">By User:{todo.userId}</p>
+    <div className={`max-w-lg mx-auto bg-pink-300 shadow-md`}>
+      <div className="divide-y-2 divide-gray-500 divide-dashed">
+        <h4 className="text-3xl p-4 text-center text-slate-600">
+          {todo.title}
+        </h4>
+        <div className="flex justify-between items-center py-2 px-5 mt-6">
+          <p className="text-gray-700 text-lg">#User:{todo.userId}</p>
           <p className="text-gray-700 text-lg">
-            Completed: {todo?.completed ? "true" : "false"}
+            Completed: {todo?.completed ? "Yes" : "No"}
           </p>
         </div>
       </div>
@@ -55,11 +52,13 @@ export default async function TodoPage({ params: { id } }: PageProp) {
   );
 }
 
+export default TodoPage;
+
 //enforce SSG/ISR
 export async function generateStaticParams() {
   try {
     const response = await fetch(
-      "https://jsonplaceholder.typicode.com/todos/?_limit=10"
+      "https://jsonplaceholder.typicode.com/todos/?_limit=20"
     );
 
     const resp = await response.json();
