@@ -1,7 +1,7 @@
 export default function SearchPage() {
   return (
     <div>
-      <p>This is where search result will be</p>
+      <p className="text-center">This is where search result will be</p>
     </div>
   );
 }
