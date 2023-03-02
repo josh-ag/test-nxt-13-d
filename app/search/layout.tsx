@@ -8,7 +8,7 @@ export default function SearchLayout({
   return (
     <div className="container mt-6 w-full">
       <SearchBar />
-      <div className="bg-sky-200 mt-4 max-w-md mx-auto">{children}</div>
+      <div className="mt-4 max-w-md mx-auto">{children}</div>
     </div>
   );
 }
