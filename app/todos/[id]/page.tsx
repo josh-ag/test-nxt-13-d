@@ -17,7 +17,7 @@ const getTodo = async (id: string) => {
     i.e fetch(url, { cache: "force-cache" }); 
   
     -@enforce incremental static regeneration(ISR)
-    i.e fetch(url, { next: {revalidate: 60} }); 
+   i.e fetch(url, { next: {revalidate: 60} }); 
   */
 
   const response = await fetch(

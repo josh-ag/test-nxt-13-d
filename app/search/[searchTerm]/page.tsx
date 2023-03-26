@@ -48,8 +48,8 @@ export default async function SearchItemPage({
               target={"_blank"}
             >
               <p className="font-bold">{data.title}</p>
-              <p>{data.snippet}</p>
             </Link>
+            <p>{data.snippet}</p>
           </li>
         ))}
       </ol>

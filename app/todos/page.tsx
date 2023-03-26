@@ -1,5 +1,3 @@
-async function TodosPage() {
+export default function TodosPage() {
   return <main />;
 }
-
-export default TodosPage;

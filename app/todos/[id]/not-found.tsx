@@ -1,5 +1,3 @@
-"use client";
-
 export default function NotFound() {
   return (
     <div className="flex flex-col mt-4 justify-center items-center">
